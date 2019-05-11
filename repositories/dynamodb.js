@@ -27,8 +27,14 @@ export const removeByPrimary = async (itemKey, TableName, { name, type = 'S' }) 
       }
     }
   }
-
   console.log('removing with params ', params)
   const removeResult = delete dynamodbClient.delete({ params }).promise()
   console.log('result from putting:', removeResult)
+}
+
+// This is the only way it seems to get stuff into a list, but it looks like a fucking pain
+// where is momngoose when you need it 
+export const updateItem = async () => {
+  // const updateResult = await dynamodbClient.updateItem().promise
+  console.log('need to make updateItem work')
 }
