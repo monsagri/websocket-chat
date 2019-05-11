@@ -1,0 +1,22 @@
+{
+  "name": "targetprocess",
+  "version": "1.0.0",
+  "main": "handler.js",
+  "author": "Fabian Feldberg <monsagri@gmail.com>",
+  "scripts": {
+    "start": "serverless offline start"
+  },
+  "devDependencies": {
+    "common-eslint": "git+ssh://git@github.com:JDLT-Ltd/common-eslint.git#460d4dc",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.6.0",
+    "eslint-loader": "^2.0.0",
+    "prettier": "^1.10.2",
+    "serverless": "^1.42.2",
+    "serverless-offline": "^4.10.0",
+    "serverless-webpack": "^5.3.0",
+    "serverless-websockets-plugin": "^1.0.0",
+    "webpack": "^4.5.0",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
