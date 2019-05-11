@@ -3,6 +3,7 @@ import { addToTable, removeByPrimary } from './dynamodb'
 const tableName = process.env.CONNECTION_TABLE
 
 export const add = async connectionId => {
+  console.log('connecting')
   const addResult = await addToTable({ connectionId }, tableName)
   console.log('addResult', addResult)
   return addResult
