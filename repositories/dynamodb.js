@@ -7,20 +7,18 @@ AWS.config.update({
 
 const dynamodbClient = new AWS.DynamoDB.DocumentClient()
 
-export const addToTable = async (item, TableName) => {
+export const addToTable = async (Item, TableName) => {
   const params = {
     TableName,
-    Item: {
-      item
-    }
+    Item
   }
+  console.log('adding with params:', params)
   const putResult = await dynamodbClient.put(params).promise()
   console.log('result from putting:', putResult)
   return putResult
 }
 
-
-export const removeByPrimary = async (itemKey, TableName, {name, type = 'S'}) => {
+export const removeByPrimary = async (itemKey, TableName, { name, type = 'S' }) => {
   const params = {
     TableName,
     Key: {
