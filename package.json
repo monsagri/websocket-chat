@@ -1,5 +1,5 @@
 {
-  "name": "targetprocess",
+  "name": "websocket-chat",
   "version": "1.0.0",
   "main": "handler.js",
   "author": "Fabian Feldberg <monsagri@gmail.com>",
@@ -11,6 +11,7 @@
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.6.0",
     "eslint-loader": "^2.0.0",
+    "eslint-plugin-prettier": "^3.0.1",
     "prettier": "^1.10.2",
     "serverless": "^1.42.2",
     "serverless-offline": "^4.10.0",
