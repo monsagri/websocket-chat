@@ -1,5 +1,5 @@
 {
-  "plugins": ["@babel/runtime","source-map-support", "@babel/plugin-transform-runtime", "@babel/plugin-proposal-class-properties",
+  "plugins": ["source-map-support", "@babel/plugin-transform-runtime", "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-object-rest-spread"],
   "presets": [
     [
