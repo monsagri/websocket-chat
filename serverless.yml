@@ -7,9 +7,15 @@ provider:
   region: eu-west-2
   stackTags:
     service: ${self:service}
-
-# you can add statements to the Lambda function's IAM Role here
- iamRoleStatements:
+  environment:
+    SERVICE: ${self:service}
+    STAGE: ${opt:stage, self:provider.stage}    
+    REGION: ${self:provider.region}
+    GRAPHQL_STAGE: ${env:SLS_STAGE, 'local'}
+    CONNECTION_TABLE: 'connections'
+    CHANNEL_TABLE: 'channels'
+    MESSAGE_TABLE: 'messages'
+  iamRoleStatements:
     - Effect: 'Allow'
       Action: 'ssm:GetParameter*'
       Resource:
@@ -32,30 +38,6 @@ provider:
               - Ref: AWS::Region
               - Ref: AWS::AccountId
               - table/*
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:PutObject"
-#      Resource:
-#        Fn::Join:
-#          - ""
-#          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDeploymentBucket"
-#            - "/*"
-
-# you can define service wide environment variables here
- environment:
-  environment:
-    SERVICE: ${self:service}
-    STAGE: ${opt:stage, self:provider.stage}    
-    REGION: ${self:provider.region}
-    GRAPHQL_STAGE: ${env:SLS_STAGE, 'local'}
-    CONNECTION_TABLE: 'connections'
-    CHANNEL_TABLE: 'channels'
-    MESSAGE_TABLE: 'messages'
 
 plugins:
   - serverless-offline
