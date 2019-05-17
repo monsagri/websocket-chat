@@ -9,7 +9,7 @@ provider:
     service: ${self:service}
   environment:
     SERVICE: ${self:service}
-    STAGE: ${opt:stage, self:provider.stage}    
+    STAGE: ${opt:stage, self:provider.stage}
     REGION: ${self:provider.region}
     GRAPHQL_STAGE: ${env:SLS_STAGE, 'local'}
     CONNECTION_TABLE: 'connections'
@@ -26,7 +26,7 @@ provider:
               - Ref: AWS::AccountId
               - parameter/${opt:stage, self:provider.stage}/*
     - Effect: 'Allow'
-      Action: 
+      Action:
         - dynamodb:DeleteItem
         - dynamodb:PutItem
         - dynamodb:UpdateItem
@@ -47,20 +47,21 @@ plugins:
 functions:
   connectionHandler:
     handler: handler.connectionHandler
-    events: 
-      - websocket: 
+    events:
+      - websocket:
         route: $connect
+      - websocket:
         route: $disconnect
   default:
     handler: handler.default
-    events: 
-      - websocket: 
+    events:
+      - websocket:
         route: $default
 
 custom:
   webpack:
-    webpackConfig: 'webpack.config.js'   # Name of webpack configuration file
-    includeModules: true   # Node modules configuration for packaging
-    packager: 'yarn'   # Packager that will be used to package your external modules
-    packagerOptions: 
+    webpackConfig: 'webpack.config.js' # Name of webpack configuration file
+    includeModules: true # Node modules configuration for packaging
+    packager: 'yarn' # Packager that will be used to package your external modules
+    packagerOptions:
       noFrozenLockFile: true
