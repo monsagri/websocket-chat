@@ -5,12 +5,23 @@ const success = {
 }
 
 export const connect = async event => {
-  await service.saveConnectionInfoToDynamoDB(event.requestContext.connectionId)
+  console.log('event:', event)
+  await service.saveConnectionInfoToDynamoDB({ event }.requestContext.connectionId)
   return success
 }
 
 export const disconnect = async event => {
   await service.deleteConnectionInfoFromDynamoDB(event.requestContext.connectionId)
+  return success
+}
+
+export const defaultRoute = async event => {
+  console.log('event in default: ', event)
+  return success
+}
+
+export const test = async event => {
+  console.log('event in test: ', event)
   return success
 }
 

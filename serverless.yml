@@ -47,8 +47,19 @@ plugins:
 functions:
   connect:
     handler: handler.connect
+    events: 
+      - websocket: 
+        route: $connect
   disconnect:
     handler: handler.disconnect
+    events: 
+      - websocket: 
+        route: $disconnect
+  default:
+    handler: handler.default
+    events: 
+      - websocket: 
+        route: $default
 
 custom:
   webpack:
@@ -57,16 +68,3 @@ custom:
     packager: 'yarn'   # Packager that will be used to package your external modules
     packagerOptions: 
       noFrozenLockFile: true
-    # excludeFiles: src/**/*.test.js # Provide a glob for files to ignore
-
-# you can add CloudFormation resource templates here
-#resources:
-#  Resources:
-#    NewResource:
-#      Type: AWS::S3::Bucket
-#      Properties:
-#        BucketName: my-new-bucket
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"
