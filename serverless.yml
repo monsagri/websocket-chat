@@ -45,15 +45,11 @@ plugins:
   - serverless-websockets-plugin
 
 functions:
-  connect:
-    handler: handler.connect
+  connectionHandler:
+    handler: handler.connectionHandler
     events: 
       - websocket: 
         route: $connect
-  disconnect:
-    handler: handler.disconnect
-    events: 
-      - websocket: 
         route: $disconnect
   default:
     handler: handler.default

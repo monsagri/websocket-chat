@@ -4,14 +4,10 @@ const success = {
   statusCode: 200
 }
 
-export const connect = async event => {
-  console.log('event:', event)
-  await service.saveConnectionInfoToDynamoDB({ event }.requestContext.connectionId)
-  return success
-}
-
-export const disconnect = async event => {
-  await service.deleteConnectionInfoFromDynamoDB(event.requestContext.connectionId)
+export const connectionHandler = async ({ requestContest: { connectionId, routeKey } }) => {
+  routeKey === '$connect'
+    ? await service.saveConnectionInfoToDynamoDB(connectionId)
+    : await service.deleteConnectionInfoFromDynamoDB(connectionId)
   return success
 }
 
