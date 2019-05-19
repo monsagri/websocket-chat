@@ -1,15 +1,15 @@
+import { responseBuilder } from './util'
 import * as service from './services'
 
 const success = {
   statusCode: 200
 }
 
-export const connectionHandler = async ({ requestContext: { connectionId, routeKey } }) => {
+export const connectionHandler = responseBuilder(async ({ requestContext: { connectionId, routeKey } }) =>
   routeKey === '$connect'
     ? await service.saveConnectionInfoToDynamoDB(connectionId)
     : await service.deleteConnectionInfoFromDynamoDB(connectionId)
-  return success
-}
+)
 
 export const defaultRoute = async event => {
   console.log('event in default: ', event)
@@ -43,8 +43,4 @@ export const messageHandler = async event => {
   return success
 }
 
-export const listConnections = async () => {
-  const result = await service.listConnections()
-  console.log('about to return from handler', result)
-  return { ...success, body: JSON.stringify(result) }
-}
+export const listConnections = responseBuilder(async () => await service.listConnections())
