@@ -7,6 +7,19 @@ export const connectionHandler = lambdaWrapper(async ({ requestContext: { connec
     : await service.deleteConnectionInfoFromDynamoDB(connectionId)
 )
 
+export const channelHandler = lambdaWrapper(
+  async ({
+    requestContext: {
+      connectionId,
+      routeKey,
+      body: { channelId }
+    }
+  }) =>
+    routeKey === '$join'
+      ? await service.joinChannel(connectionId, channelId)
+      : await service.leaveChannel((connectionId, channelId))
+)
+
 export const defaultRoute = lambdaWrapper(() => 'No action taken')
 
 // assume there is other logic and processes that save "channel" subscriptions for each

@@ -3,7 +3,7 @@ import * as dynamoDb from './dynamodb'
 const tableName = process.env.CONNECTION_TABLE
 
 export const add = async connectionId => {
-  console.log('connecting')
+  console.log('connecting', connectionId)
   const addResult = await dynamoDb.addToTable({ connectionId }, tableName)
   console.log('addResult', addResult)
   return addResult
