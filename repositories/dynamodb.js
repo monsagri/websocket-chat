@@ -18,18 +18,17 @@ export const addToTable = async (Item, TableName) => {
   return putResult
 }
 
-export const removeByPrimary = async (itemKey, TableName, { keyName, type = 'S' }) => {
+export const removeByPrimary = async (itemKey, TableName, { keyName }) => {
   const params = {
     TableName,
     Key: {
-      [keyName]: {
-        [type]: itemKey
-      }
+      [keyName]: itemKey
     }
   }
   console.log('removing with params ', params)
   const removeResult = await dynamodbClient.delete(params).promise()
   console.log('result from deleting:', removeResult)
+  return removeResult
 }
 
 // This is the only way it seems to get stuff into a list, but it looks like a fucking pain
