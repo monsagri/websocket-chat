@@ -45,6 +45,13 @@ plugins:
   - serverless-websockets-plugin
 
 functions:
+  listConnections:
+    handler: handler.listConnections
+    events:
+      - http:
+          path: listConnections
+          method: get
+          cors: true
   connectionHandler:
     handler: handler.connectionHandler
     events:

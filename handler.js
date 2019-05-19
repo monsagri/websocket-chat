@@ -4,7 +4,7 @@ const success = {
   statusCode: 200
 }
 
-export const connectionHandler = async ({ requestContest: { connectionId, routeKey } }) => {
+export const connectionHandler = async ({ requestContext: { connectionId, routeKey } }) => {
   routeKey === '$connect'
     ? await service.saveConnectionInfoToDynamoDB(connectionId)
     : await service.deleteConnectionInfoFromDynamoDB(connectionId)
@@ -41,4 +41,10 @@ export const messageHandler = async event => {
 
   // still have to let api gateway know we were succesful!
   return success
+}
+
+export const listConnections = async () => {
+  const result = await service.listConnections()
+  console.log('about to return from handler', result)
+  return { ...success, body: JSON.stringify(result) }
 }

@@ -8,3 +8,5 @@ export const deleteConnectionInfoFromDynamoDB = connectionRepo.remove
 export const getSubscribersToChannel = channelRepo.listSubscribers
 
 export const sendMessageToSubscriber = messageRepo.sendMessage
+
+export const listConnections = connectionRepo.listConnections
